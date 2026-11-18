@@ -35,6 +35,7 @@ IDS = [
     "bDots",
     "contacto",
     "c",
+    "navMenu",
 ]
 
 PREPEND_CSS = (
@@ -304,6 +305,7 @@ def rewrite_ids(text: str) -> str:
         text = text.replace(f"id='{name}'", f"id='hepta-{name}'")
         text = text.replace(f'href="#{name}"', f'href="#hepta-{name}"')
         text = text.replace(f"href='#{name}'", f"href='#hepta-{name}'")
+        text = text.replace(f'aria-controls="{name}"', f'aria-controls="hepta-{name}"')
         text = text.replace(f"getElementById('{name}')", f"getElementById('hepta-{name}')")
         text = text.replace(f'getElementById("{name}")', f'getElementById("hepta-{name}")')
     return text
@@ -391,8 +393,12 @@ def validate(css: str, document: str, source_name: str) -> None:
         errors.append("quedó una ruta relativa a Imagenes/")
     if re.search(r'href="https://heptachile\.cl/"(?![A-Za-z0-9])', document):
         errors.append("quedó un enlace a la home https://heptachile.cl/")
+    if 'href="https://heptachile.cl/tienda/"' in document:
+        errors.append("quedó un enlace a /tienda/; la tienda general va a /home-tienda/")
+    if 'class="wa"' in document or ".wa{" in css:
+        errors.append("quedó el botón flotante de WhatsApp")
     for needle in (
-        'href="https://heptachile.cl/tienda/"',
+        'href="https://heptachile.cl/home-tienda/"',
         'href="/"',
         'data-zentru-form="774691286/solicitud-de-cotizaci-n-landing-hepta"',
         "https://beta.hapee.ai/static/form-embed.js",
