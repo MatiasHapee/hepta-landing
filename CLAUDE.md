@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Landing de tipo brochure para Hepta Chile (https://heptachile.cl), cuyo objetivo es invitar a comprar en la tienda web. No es una app: es **un solo archivo HTML estático** (`hepta-home-vN.html`) con CSS y JS inline, más la carpeta `Imagenes/`. No hay build, linter ni tests, ni dependencias salvo Google Fonts (Archivo y Lexend).
 
-El número de versión del archivo cambia cuando el usuario lo renombra (v3_1 → v6 → v7). Trabaja siempre sobre el `hepta-home-v*.html` que exista en la raíz y no lo renombres por tu cuenta.
+El número de versión del archivo cambia cuando el usuario lo renombra (v3_1 → v6 → v7). Trabaja siempre sobre el `hepta-home-v*.html` que exista en la raíz y no lo renombres por tu cuenta. Ese archivo es la vista previa estática (rutas `Imagenes/` y `Public/`). La portada de WordPress se publica con `hepta-home-wp.html`, que se regenera con `python3 scripts/build-wp-landing.py` (no lo edites a mano). Pasos de subida, Lectura y caché: `DEPLOY-WP.md`.
 
 ## Comandos
 
