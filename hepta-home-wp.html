@@ -83,6 +83,14 @@ la portada queda en https://www.heptachile.cl/ y la tienda en https://heptachile
   #hepta-landing#hepta-landing header nav a.nav-shop::after{display:none}
   #hepta-landing#hepta-landing header nav a.nav-shop svg{width:16px;height:16px}
   #hepta-landing#hepta-landing header .btn{padding:13px 22px}
+  #hepta-landing#hepta-landing .nav-toggle{display:none;width:44px;height:44px;padding:0;border:0;border-radius:12px;background:var(--ink);color:#fff;cursor:pointer;place-items:center;flex:none}
+  #hepta-landing#hepta-landing .nav-toggle svg{width:22px;height:22px}
+  #hepta-landing#hepta-landing .nav-toggle .nav-x{display:none}
+  #hepta-landing#hepta-landing header.menu-open .nav-toggle .nav-bars{display:none}
+  #hepta-landing#hepta-landing header.menu-open .nav-toggle .nav-x{display:block}
+  #hepta-landing#hepta-landing .nav-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+  #hepta-landing#hepta-landing header nav .nav-cta{display:none}
+  #hepta-landing#hepta-landing header nav a.nav-cta::after{display:none}
 
   /* ---------- hero slider ---------- */
   #hepta-landing#hepta-landing .hero{position:relative;height:min(86vh,820px);min-height:600px;overflow:hidden;color:#fff;background:#2b2824}
@@ -260,11 +268,6 @@ la portada queda en https://www.heptachile.cl/ y la tienda en https://heptachile
   #hepta-landing#hepta-landing footer a:hover{color:var(--orange)}
   #hepta-landing#hepta-landing .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:48px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px}
 
-  /* WhatsApp flotante */
-  #hepta-landing#hepta-landing .wa{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(0,0,0,.4);transition:transform .2s}
-  #hepta-landing#hepta-landing .wa:hover{transform:scale(1.07)}
-  #hepta-landing#hepta-landing .wa svg{width:30px;height:30px;color:#fff}
-
   /* ---------- responsive ---------- */
   @media (max-width:1100px){
     #hepta-landing#hepta-landing .cats .cat{flex-basis:calc((100% - 48px)/3.3)}
@@ -274,7 +277,13 @@ la portada queda en https://www.heptachile.cl/ y la tienda en https://heptachile
     #hepta-landing#hepta-landing .seal{display:none}
   }
   @media (max-width:860px){
-    #hepta-landing#hepta-landing header nav{display:none}
+    #hepta-landing#hepta-landing header .nav-cta-bar{display:none}
+    #hepta-landing#hepta-landing header .nav-toggle{display:grid}
+    #hepta-landing#hepta-landing header nav{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;align-items:stretch;gap:2px;padding:6px 16px 18px;background:var(--orange);box-shadow:0 18px 28px -20px rgba(0,0,0,.55);z-index:5}
+    #hepta-landing#hepta-landing header.menu-open nav{display:flex}
+    #hepta-landing#hepta-landing header.menu-open nav a{min-height:44px;display:flex;align-items:center;padding:10px 4px;font-size:16px}
+    #hepta-landing#hepta-landing header.menu-open nav a.nav-shop{display:inline-flex;align-self:flex-start;width:max-content;margin:6px 0}
+    #hepta-landing#hepta-landing header.menu-open nav .nav-cta{display:inline-flex;align-self:flex-start;margin-top:8px}
     #hepta-landing#hepta-landing header .wrap{justify-content:space-between}
     #hepta-landing#hepta-landing .hero{height:auto;min-height:0}
     #hepta-landing#hepta-landing .hero-in{padding:90px 0 40px}
@@ -393,13 +402,18 @@ body:has(#hepta-landing) .elementor-location-footer{display:none !important}
 <header>
   <div class="wrap">
     <a href="/" class="logo">HEPTA<small>CHILE</small></a>
-    <nav aria-label="Principal">
+    <nav id="hepta-navMenu" aria-label="Principal">
       <a href="#hepta-productos">Productos</a>
       <a href="https://heptachile.cl/blog/" target="_blank" rel="noopener">Blog</a>
-      <a class="nav-shop" href="https://heptachile.cl/tienda/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>Tienda E-Commerce</a>
+      <a class="nav-shop" href="https://heptachile.cl/home-tienda/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>Tienda E-Commerce</a>
       <a href="#hepta-contacto">Contacto</a>
+      <a class="btn btn-dark nav-cta" href="#hepta-contacto">Cotizar</a>
     </nav>
-    <a class="btn btn-dark" href="#hepta-contacto">Cotizar</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hepta-navMenu" aria-label="Abrir menú">
+      <svg class="nav-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="nav-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a class="btn btn-dark nav-cta-bar" href="#hepta-contacto">Cotizar</a>
   </div>
 </header>
 
@@ -640,7 +654,7 @@ body:has(#hepta-landing) .elementor-location-footer{display:none !important}
       </div>
       <div>
         <h4>Navegación</h4>
-        <ul><li><a href="/">Inicio</a></li><li><a href="https://heptachile.cl/tienda/">Tienda</a></li><li><a href="https://heptachile.cl/nosotros/" target="_blank" rel="noopener">Nuestro Equipo</a></li><li><a href="https://heptachile.cl/contacto/" target="_blank" rel="noopener">Contacto</a></li></ul>
+        <ul><li><a href="/">Inicio</a></li><li><a href="https://heptachile.cl/home-tienda/">Tienda</a></li><li><a href="https://heptachile.cl/nosotros/" target="_blank" rel="noopener">Nuestro Equipo</a></li><li><a href="https://heptachile.cl/contacto/" target="_blank" rel="noopener">Contacto</a></li></ul>
         <h4 style="margin-top:28px">Catálogo</h4>
         <ul><li><a href="https://heptachile.cl/catalogo-productos-mas-cotizados-hepta-2025/" target="_blank" rel="noopener">Productos destacados 2025</a></li><li><a href="https://heptachile.cl/catalogo-mini-gruas-arana/" target="_blank" rel="noopener">Mini grúas araña</a></li><li><a href="https://heptachile.cl/elementor-3998/" target="_blank" rel="noopener">Ferretería</a></li></ul>
       </div>
@@ -660,14 +674,28 @@ body:has(#hepta-landing) .elementor-location-footer{display:none !important}
     <div class="legal"><span>© 2026 Hepta Chile. Todos los derechos reservados.</span></div>
   </div>
 </footer>
-
-<a class="wa" href="https://wa.me/56987690593" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>
-</a>
 <script>
 (function(){
   var root=document.getElementById('hepta-landing');
   if(!root) return;
+
+  const navToggle=root.querySelector('.nav-toggle'), navMenu=root.querySelector('#hepta-navMenu');
+  const setNav=open=>{
+    navToggle.setAttribute('aria-expanded',open?'true':'false');
+    navToggle.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');
+    root.querySelector('header').classList.toggle('menu-open',open);
+  };
+  navToggle.addEventListener('click',()=>setNav(navToggle.getAttribute('aria-expanded')!=='true'));
+  navMenu.addEventListener('click',e=>{if(e.target.closest('a'))setNav(false)});
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&navToggle.getAttribute('aria-expanded')==='true'){setNav(false);navToggle.focus()}
+  });
+  document.addEventListener('click',e=>{
+    if(navToggle.getAttribute('aria-expanded')!=='true')return;
+    if(navToggle.contains(e.target)||navMenu.contains(e.target))return;
+    setNav(false);
+  });
+  window.addEventListener('resize',()=>{if(matchMedia('(min-width:861px)').matches)setNav(false)});
 
   // contadores: suben de 0 a su número cuando la franja aparece en pantalla
   const nums=[...root.querySelectorAll('.counter b')];
